@@ -20,7 +20,7 @@ router.get("/:id", async (req, res, next) => {
             .where("id", req.params.id)
             .first()
 
-        res.json(account)
+			res.json(account)
 	} catch (err) {
 		next(err)
 	}
@@ -34,7 +34,7 @@ router.post("/",validateAcc, async (req, res, next) => {
 			budget: req.body.budget,
 		}
 		const [ID] = await db.insert(input).into("accounts")
-		
+
 		const account = await db.first("*").from("accounts").where("id", ID)
 
 		res.status(201).json(account)
